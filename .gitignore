@@ -1,0 +1,12 @@
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Datasets: see data/README.md. Remove these lines if you decide to commit the CSVs.
+data/*.csv
+
+# OS
+.DS_Store
