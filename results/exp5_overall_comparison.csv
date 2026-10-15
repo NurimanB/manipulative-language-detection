@@ -1,0 +1,13 @@
+Model,Test F1
+Exp. 1 — TF-IDF + logistic regression,0.9315673289183224
+Exp. 3 — Word2Vec — project corpus + logistic regression,0.9404517453798767
+Exp. 3 — Pretrained GloVe + logistic regression,0.9044585987261148
+Exp. 4 — NN (ReLU) — frozen GloVe,0.9280356023194136
+Exp. 4 — NN (ReLU) — fine-tuned embeddings,0.9348704200065447
+"Exp. 4 — NN (linear, no non-linearity) — frozen GloVe",0.9011262230633376
+Exp. 5 — unigram LM (= Naive Bayes),0.948936170212766
+Exp. 5 — bigram LM,0.9243353783231084
+Exp. 5 — trigram LM,0.9032258064516129
+Exp. 5 — RNN-LM classifier,0.9580023974382872
+Exp. 5 — RNN classifier (last),0.9378032383256883
+Exp. 5 — RNN classifier (mean),0.947143052085245

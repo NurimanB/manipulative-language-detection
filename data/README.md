@@ -1,18 +1,25 @@
 # Data
 
-The notebooks expect two CSV files in this folder.
-
-| File | Role | Source |
+| File | Role | In the repo? |
 |---|---|---|
-| `dark_patterns_ecommerce_dataset.csv` | Main dataset (training + internal evaluation) | Built by `build_dataset.py` from Mathur et al. (2019) and Yada et al. (2022) |
-| `manipulative_language_dataset_300.csv` | External test set only (real ads + synthetic examples incl. hard negatives) | Our original project data |
+| `dark_patterns_ecommerce_dataset.csv` | Main dataset (training + internal evaluation), 2,349 texts | Yes |
+| `manipulative_language_dataset_300.csv` | External test set only: our real ads (57) and synthetic examples (370, incl. 90 hard negatives) | **Add it here.** Without it, the notebooks skip the external checks |
 
-## Licenses
-- **Mathur et al. (2019), "Dark Patterns at Scale"**: GPL-3.0
-- **Yada et al. (2022), "Dark patterns in e-commerce: a dataset and its baseline evaluations"**: Apache-2.0
+## Rebuilding the main dataset
 
-If you redistribute the combined CSV, the GPL-3.0 terms of the Mathur data apply.
+`scripts/build_dataset.py` downloads the two public sources and writes the CSV to the current folder:
 
-## Expected columns
-- Main: `text`, `manipulative` (0/1), `source`, `pattern_type`, `urgency`, `scarcity`, `social_proof`, `emotional_pressure`
-- External: `id`, `text`, `manipulative`, `source`, `source_type` (`real` / `synthetic`), and the same four technique columns
+```bash
+cd data
+python ../scripts/build_dataset.py
+```
+
+It combines:
+- **Mathur et al. (2019), "Dark Patterns at Scale"**: 1,818 dark-pattern texts from shopping websites with a Pattern Type (GPL-3.0, https://github.com/aruneshmathur/dark-patterns)
+- **Yada et al. (2022), "Dark patterns in e-commerce: a dataset and its baseline evaluations"**: the deduplicated Mathur texts plus the same number of non-dark-pattern texts from the same websites (Apache-2.0, https://github.com/yamanalab/ec-darkpattern)
+
+Because the CSV contains the Mathur texts, the GPL-3.0 terms apply when it is redistributed.
+
+## Columns
+- Main: `id`, `text`, `manipulative` (0/1), `urgency`, `scarcity`, `social_proof`, `emotional_pressure`, `pattern_category`, `pattern_type`, `page_id`, `source`
+- External: `id`, `text`, `manipulative`, `source` (e.g. `synthetic_hard_negative`), `source_type` (`real` / `synthetic`), and the same four technique columns
